@@ -1,6 +1,6 @@
 import cv2
 
-video_path = r"C:\Users\varsh\Videos\Screen Recordings\Screen Recording 2025-01-17 195613.mp4"
+video_path = r"C:\Users\varsh\Videos\Screen Recordings\Original Video.mp4"
 cap = cv2.VideoCapture(video_path)
 
 if not cap.isOpened():
