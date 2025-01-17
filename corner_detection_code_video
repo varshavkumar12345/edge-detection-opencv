@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 video_path = r"C:\Users\varsh\Videos\Screen Recordings\Screen Recording 2024-10-06 173542.mp4"
-output_path = r"C:\Users\varsh\Videos\Screen Recordings\Screen Recording"  # Path to save the output video
+output_path = r"C:\Users\varsh\Videos\Screen Recordings\Screen Recording"
 cap = cv2.VideoCapture(video_path)
 
 # Check if video opened successfully
@@ -24,7 +24,6 @@ while True:
         print("End of video.")
         break
 
-    # Convert frame to grayscale
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     corners = cv2.goodFeaturesToTrack(gray_frame, maxCorners=1000, qualityLevel=0.01, minDistance=5)
