@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import cv2
+
+# Load the images
+img = cv2.imread(r"C:\Users\varsh\OneDrive\Pictures\Screenshots\Screenshot 2024-10-13 204830.png")
+bg = cv2.imread(r"C:\Users\varsh\OneDrive\Pictures\Screenshots\Screenshot 2025-01-17 150352.png")
+
+# Resize bg to match the size of img
+bg = cv2.resize(bg, (img.shape[1], img.shape[0]))
+
+# Convert img to grayscale
+gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Detect corners in the grayscale image
+corners = cv2.goodFeaturesToTrack(gray_img, maxCorners=1000000000, qualityLevel=0.001, minDistance=5)
+corners = np.int0(corners)
+
+# Draw corners on the resized bg
+for i in corners:
+    x, y = i.ravel()
+    cv2.circle(bg, (x, y), 3, (0, 0, 255), -1)  # Use red for visibility
+
+# Display the image with corners
+plt.imshow(cv2.cvtColor(bg, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for matplotlib
+plt.axis('off')  # Hide axes
+plt.show()
