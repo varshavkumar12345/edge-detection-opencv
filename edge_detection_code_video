@@ -1,0 +1,27 @@
+import cv2
+
+video_path = r"C:\Users\varsh\Videos\Screen Recordings\Screen Recording 2025-01-17 195613.mp4"
+cap = cv2.VideoCapture(video_path)
+
+if not cap.isOpened():
+    print("Error: Could not open video.")
+    exit()
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("End of video.")
+        break
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    edges = cv2.Canny(gray, threshold1=50, threshold2=100)
+
+    cv2.imshow('Edges', edges)
+
+    # Press 'q' to quit
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
